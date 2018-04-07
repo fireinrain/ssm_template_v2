@@ -4,6 +4,8 @@ import com.sunrise.entity.Appointment;
 import com.sunrise.entity.Book;
 import org.junit.Assert;
 import org.junit.Test;
+import org.springframework.test.annotation.Rollback;
+import org.springframework.transaction.annotation.Transactional;
 
 import javax.annotation.Resource;
 import java.util.Date;
@@ -19,6 +21,8 @@ public class AppointmentDaoTest extends BaseTest {
     private AppointmentDao appointmentDao;
 
     @Test
+    @Transactional
+    @Rollback
     public void insertAppointRecord() {
         Book book = this.bookDao.queryById(1000L);
         int i = this.appointmentDao.insertAppointRecord(1000L, 92112L);
